@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Room | Premium Salon in Dibba, UAE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --terracotta: #C85A54;
+            --rust: #8B4513;
+            --blush: #E8C4D0;
+            --ivory: #F5F3F0;
+            --cream: #FBF8F5;
+            --gold: #D4AF37;
+            --magenta: #D946A6;
+            --orange: #F97316;
+            --dark: #2C2C2C;
+            --light-gray: #E8E8E8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 6vw, 2.75rem);
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 999;
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            color: #999;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--magenta), var(--orange), var(--gold));
+            color: white;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 1.5rem;
+            z-index: 998;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--magenta), var(--orange), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(217, 70, 166, 0.4);
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(217, 70, 166, 0.6);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--ivory) 0%, var(--blush) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663757723921/cuexQvEqPZRZqKay.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-name {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-name-en {
+            font-size: clamp(2.5rem, 10vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--magenta), var(--orange), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-name-ar {
+            font-size: clamp(1.75rem, 7vw, 2.75rem);
+            font-weight: 600;
+            color: var(--terracotta);
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: var(--rust);
+            margin-bottom: 2rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (min-width: 640px) {
+            .hero-ctas {
+                flex-direction: row;
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--magenta), var(--orange), var(--gold));
+            color: white;
+            box-shadow: 0 4px 16px rgba(217, 70, 166, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(217, 70, 166, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--terracotta);
+            border: 2px solid var(--terracotta);
+        }
+
+        .btn-secondary:hover {
+            background: var(--terracotta);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 6rem 2rem;
+            }
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--magenta), var(--gold));
+            margin: 1rem auto 0;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--ivory);
+        }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--cream);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--terracotta);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: var(--rust);
+            font-size: 1.1rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--ivory);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: var(--cream);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--terracotta);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--terracotta);
+        }
+
+        .stats-strip {
+            background: linear-gradient(135deg, var(--magenta), var(--orange), var(--gold));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Location & Booking Section */
+        .location {
+            background: var(--ivory);
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .location-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 1;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-block {
+            margin-bottom: 2rem;
+        }
+
+        .info-block h3 {
+            color: var(--terracotta);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-block p {
+            margin: 0.5rem 0;
+        }
+
+        .info-block a {
+            color: var(--terracotta);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .info-block a:hover {
+            color: var(--magenta);
+        }
+
+        .booking-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--magenta), var(--orange), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-info {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-social {
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            color: var(--blush);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--gold);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RTL Support */
+        [dir="rtl"] {
+            direction: rtl;
+            text-align: right;
+        }
+
+        [dir="rtl"] .hero-name-ar {
+            direction: rtl;
+        }
+
+        [dir="rtl"] .section-title::after {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        [dir="rtl"] .testimonial-card {
+            border-left: none;
+            border-right: 4px solid var(--terracotta);
+        }
+
+        [dir="rtl"] .service-card {
+            text-align: right;
+        }
+
+        [dir="rtl"] .info-block {
+            text-align: right;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 640px) {
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                aspect-ratio: 1;
+                min-height: 300px;
+            }
+
+            .lang-toggle {
+                top: 0.75rem;
+                right: 0.75rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .lang-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+                bottom: 1.5rem;
+                right: 1rem;
+            }
+        }
+
+        /* Lazy Loading Placeholder */
+        img {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        img[loading="lazy"] {
+            background: none;
+            animation: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/971588755905" class="whatsapp-btn" title="Chat on WhatsApp" target="_blank">
+        💬
+    </a>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-name">
+                <div class="hero-name-en" data-en="Beauty Room" data-ar="صالون بيوتي روم">Beauty Room</div>
+                <div class="hero-name-ar" data-en="Beauty Room" data-ar="صالون بيوتي روم">صالون بيوتي روم</div>
+            </div>
+            <p class="hero-tagline" data-en="Boutique luxury salon in Dibba, UAE. Personalized beauty, refined elegance." data-ar="صالون فاخر في دبا، الإمارات. جمال شخصي، أناقة راقية.">Boutique luxury salon in Dibba, UAE. Personalized beauty, refined elegance.</p>
+            <div class="hero-ctas">
+                <a href="https://wa.me/971588755905" class="btn btn-primary" data-en="Book on WhatsApp" data-ar="احجز عبر واتساب" target="_blank">Book on WhatsApp</a>
+                <button class="btn btn-secondary" onclick="scrollToSection('services')" data-en="View Services" data-ar="عرض الخدمات">View Services</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <h2 class="section-title" data-en="About Beauty Room" data-ar="عن صالون بيوتي روم">About Beauty Room</h2>
+            <div class="about-content">
+                <p data-en="We are a boutique beauty salon dedicated to personalized care and attention to detail. Every client receives a bespoke experience tailored to their unique beauty needs, in a warm, welcoming space in the heart of Dibba." data-ar="نحن صالون جمال فاخر مكرس للعناية الشخصية والاهتمام بالتفاصيل. تتلقى كل عميلة تجربة مخصصة تناسب احتياجاتها الجمالية الفريدة، في مساحة دافئة وترحيبية في قلب دبا.">We are a boutique beauty salon dedicated to personalized care and attention to detail. Every client receives a bespoke experience tailored to their unique beauty needs, in a warm, welcoming space in the heart of Dibba.</p>
+                <p data-en="From premium nail artistry to expert hair styling and luxurious spa treatments, we combine traditional craftsmanship with modern techniques to deliver exceptional results." data-ar="من فن الأظافر الفاخر إلى تصفيف الشعر الخبير والعلاجات السبا الفاخرة، نجمع بين الحرفية التقليدية والتقنيات الحديثة لتقديم نتائج استثنائية.">From premium nail artistry to expert hair styling and luxurious spa treatments, we combine traditional craftsmanship with modern techniques to deliver exceptional results.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-container">
+            <h2 class="section-title" data-en="Our Services" data-ar="خدماتنا">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in-on-scroll">
+                    <div class="service-icon">💅</div>
+                    <h3 data-en="Nails" data-ar="الأظافر">Nails</h3>
+                    <p data-en="Gel manicures, intricate nail art, luxurious gold-leaf designs, and expert nail care." data-ar="مانيكير جل، فن أظافر معقد، تصاميم ذهب الأوراق الفاخرة، والعناية الخبيرة بالأظافر.">Gel manicures, intricate nail art, luxurious gold-leaf designs, and expert nail care.</p>
+                    <div class="service-price" data-en="From AED 50" data-ar="من 50 درهم">From AED 50</div>
+                </div>
+                <div class="service-card fade-in-on-scroll">
+                    <div class="service-icon">✂️</div>
+                    <h3 data-en="Hair" data-ar="الشعر">Hair</h3>
+                    <p data-en="Professional cuts, styling, color treatments, and rejuvenating hair therapies for all hair types." data-ar="قصات احترافية، تصفيف، علاجات لونية، وعلاجات شعر منعشة لجميع أنواع الشعر.">Professional cuts, styling, color treatments, and rejuvenating hair therapies for all hair types.</p>
+                    <div class="service-price" data-en="From AED 75" data-ar="من 75 درهم">From AED 75</div>
+                </div>
+                <div class="service-card fade-in-on-scroll">
+                    <div class="service-icon">✨</div>
+                    <h3 data-en="Beauty & Spa" data-ar="الجمال والسبا">Beauty & Spa</h3>
+                    <p data-en="Rejuvenating facials, expert waxing, lash extensions, and luxurious spa treatments." data-ar="علاجات وجه منعشة، إزالة شعر خبيرة، تمديدات رموش، وعلاجات سبا فاخرة.">Rejuvenating facials, expert waxing, lash extensions, and luxurious spa treatments.</p>
+                    <div class="service-price" data-en="From AED 60" data-ar="من 60 درهم">From AED 60</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-container">
+            <h2 class="section-title" data-en="Our Work" data-ar="أعمالنا">Our Work</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663757723921/KlCTbpFgAgNdENQb.jpg" alt="Gold leaf nail design" loading="lazy">
+                </div>
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663757723921/tKkmbsJTPwgrAKcI.jpg" alt="Nail art design" loading="lazy">
+                </div>
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663757723921/ReHjuNWGqDueIQXr.jpg" alt="Hair styling" loading="lazy">
+                </div>
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663757723921/fstMgFVqUUJnvVPx.jpg" alt="Hair finish" loading="lazy">
+                </div>
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663757723921/OorLMHZmPBTzICQk.jpg" alt="Salon interior" loading="lazy">
+                </div>
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663757723921/ZpIrFSAuUBjSjSLV.jpg" alt="Salon ambience" loading="lazy">
+                </div>
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663757723921/tJGrZIzBcRHjcTxd.jpg" alt="Salon minimal" loading="lazy">
+                </div>
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663757723921/cuexQvEqPZRZqKay.jpg" alt="Salon interior detail" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-container">
+            <h2 class="section-title" data-en="What Our Clients Say" data-ar="ما يقوله عملاؤنا">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in-on-scroll">
+                    <p class="testimonial-text" data-en="The attention to detail is unmatched. Every visit feels like a personal spa retreat. Highly recommended!" data-ar="الاهتمام بالتفاصيل لا مثيل له. كل زيارة تشعر وكأنها منتجع سبا شخصي. موصى به بشدة!">The attention to detail is unmatched. Every visit feels like a personal spa retreat. Highly recommended!</p>
+                    <p class="testimonial-author" data-en="— Fatima A." data-ar="— فاطمة أ.">— Fatima A.</p>
+                </div>
+                <div class="testimonial-card fade-in-on-scroll">
+                    <p class="testimonial-text" data-en="Beauty Room has become my go-to salon. The team is professional, warm, and truly cares about your beauty goals." data-ar="أصبح صالون بيوتي روم صالوني المفضل. الفريق احترافي وودود ويهتم حقاً بأهدافك الجمالية.">Beauty Room has become my go-to salon. The team is professional, warm, and truly cares about your beauty goals.</p>
+                    <p class="testimonial-author" data-en="— Noor M." data-ar="— نور م.">— Noor M.</p>
+                </div>
+                <div class="testimonial-card fade-in-on-scroll">
+                    <p class="testimonial-text" data-en="The nail art here is absolutely stunning. I always leave feeling pampered and beautiful. Worth every dirham!" data-ar="فن الأظافر هنا مذهل تماماً. أشعر دائماً بالدلال والجمال عند المغادرة. يستحق كل درهم!">The nail art here is absolutely stunning. I always leave feeling pampered and beautiful. Worth every dirham!</p>
+                    <p class="testimonial-author" data-en="— Layla K." data-ar="— ليلى ك.">— Layla K.</p>
+                </div>
+            </div>
+            <div class="stats-strip fade-in-on-scroll" data-en="1,500+ followers on Instagram | Join our beauty community" data-ar="1,500+ متابع على إنستغرام | انضمي إلى مجتمعنا الجمالي">
+                1,500+ followers on Instagram | Join our beauty community
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Booking Section -->
+    <section class="location" id="location">
+        <div class="section-container">
+            <h2 class="section-title" data-en="Visit Us" data-ar="زورينا">Visit Us</h2>
+            <div class="location-content">
+                <div class="map-container fade-in-on-scroll">
+                    <iframe src="https://www.google.com/maps?q=Dibba+Al+Riffa+Villa+250+Fujairah+UAE&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="location-info fade-in-on-scroll">
+                    <div class="info-block">
+                        <h3 data-en="Address" data-ar="العنوان">Address</h3>
+                        <p data-en="Villa 250, Dibba - Al Riffa<br>Fujairah, UAE" data-ar="فيلا 250، دبا - الرفاع<br>الفجيرة، الإمارات">Villa 250, Dibba - Al Riffa<br>Fujairah, UAE</p>
+                    </div>
+                    <div class="info-block">
+                        <h3 data-en="Phone" data-ar="الهاتف">Phone</h3>
+                        <p><a href="tel:+971588755905">+971 58 875 5905</a></p>
+                    </div>
+                    <div class="info-block">
+                        <h3 data-en="Hours" data-ar="ساعات العمل">Hours</h3>
+                        <p data-en="Monday – Friday: 10:00 AM – 8:00 PM<br>Saturday – Sunday: 11:00 AM – 9:00 PM" data-ar="الاثنين – الجمعة: 10:00 صباحاً – 8:00 مساءً<br>السبت – الأحد: 11:00 صباحاً – 9:00 مساءً">Monday – Friday: 10:00 AM – 8:00 PM<br>Saturday – Sunday: 11:00 AM – 9:00 PM</p>
+                    </div>
+                    <div class="booking-buttons">
+                        <a href="https://wa.me/971588755905" class="btn btn-primary" data-en="Book on WhatsApp" data-ar="احجز عبر واتساب" target="_blank">Book on WhatsApp</a>
+                        <a href="#" class="btn btn-secondary" data-en="Book on Fresha" data-ar="احجز عبر فريشا" onclick="alert('Fresha booking link coming soon!')">Book on Fresha</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-name" data-en="Beauty Room" data-ar="صالون بيوتي روم">Beauty Room</div>
+            <div class="footer-info" data-en="Premium Salon in Dibba, UAE | Nails • Hair • Beauty & Spa" data-ar="صالون فاخر في دبا، الإمارات | أظافر • شعر • جمال وسبا">Premium Salon in Dibba, UAE | Nails • Hair • Beauty & Spa</div>
+            <div class="footer-social">
+                <a href="https://instagram.com/beautyroom.uae" target="_blank" data-en="Follow @beautyroom.uae on Instagram" data-ar="تابعي @beautyroom.uae على إنستغرام">Follow @beautyroom.uae on Instagram</a>
+            </div>
+            <div class="footer-info" style="margin-top: 1.5rem; font-size: 0.85rem; opacity: 0.6;">
+                <p data-en="© 2026 Beauty Room. All rights reserved." data-ar="© 2026 صالون بيوتي روم. جميع الحقوق محفوظة.">© 2026 Beauty Room. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const htmlElement = document.documentElement;
+        let currentLang = 'en';
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentLang = btn.dataset.lang;
+                langBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                updateLanguage(currentLang);
+            });
+        });
+
+        function updateLanguage(lang) {
+            const elements = document.querySelectorAll('[data-en][data-ar]');
+            elements.forEach(el => {
+                if (lang === 'ar') {
+                    el.textContent = el.dataset.ar;
+                    el.style.direction = 'rtl';
+                } else {
+                    el.textContent = el.dataset.en;
+                    el.style.direction = 'ltr';
+                }
+            });
+
+            // Update HTML lang attribute
+            htmlElement.lang = lang;
+            if (lang === 'ar') {
+                htmlElement.setAttribute('dir', 'rtl');
+                document.body.setAttribute('dir', 'rtl');
+            } else {
+                htmlElement.removeAttribute('dir');
+                document.body.removeAttribute('dir');
+            }
+        }
+
+        // Scroll to Section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Scroll-triggered Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll behavior for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    scrollToSection(href.substring(1));
+                }
+            });
+        });
+
+        // Lazy loading for images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.src;
+                        img.removeAttribute('loading');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+</body>
+</html>
